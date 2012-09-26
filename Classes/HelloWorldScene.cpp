@@ -1,8 +1,14 @@
+//
+//  Created by Gonzalo Diaz Cruz on 04-09-12.
+//  Copyright Studio Pangea 2012. All rights reserved.
+//  http://www.studiopangea.com/
+//
+
 #include "HelloWorldScene.h"
-#include "SimpleAudioEngine.h"
+#include "CCParallaxNodeExtras.h"
 
 using namespace cocos2d;
-using namespace CocosDenshion;
+//using namespace CocosDenshion;
 
 CCScene* HelloWorld::scene()
 {
@@ -48,29 +54,48 @@ bool HelloWorld::init()
 
     /////////////////////////////
     // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Hello World", "Thonburi", 34);
-
-    // ask director the window size
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
-
-    // position the label on the center of the screen
-    pLabel->setPosition( ccp(size.width / 2, size.height - 20) );
-
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
-
-    // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width/2, size.height/2) );
-
-    // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
     
+    _batchNode = CCSpriteBatchNode::batchNodeWithFile("Spritesheets/Sprites.pvr.ccz");
+    this->addChild(_batchNode);
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Spritesheets/Sprites.plist");
+
+    _ship = CCSprite::spriteWithSpriteFrameName("SpaceFlier_sm_1.png");
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    _ship->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
+    _batchNode->addChild(_ship, 1);
+
+
+
+    // 1) Create the CCParallaxNode
+    _backgroundNode = CCParallaxNodeExtras::node();
+    this->addChild(_backgroundNode,-1);
+
+    // 2) Create the sprites we'll add to the CCParallaxNode
+    _spacedust1 = CCSprite::spriteWithFile("Backgrounds/bg_front_spacedust.png");
+    _spacedust2 = CCSprite::spriteWithFile("Backgrounds/bg_front_spacedust.png");
+    _planetsunrise = CCSprite::spriteWithFile("Backgrounds/bg_planetsunrise.png");
+    _galaxy = CCSprite::spriteWithFile("Backgrounds/bg_galaxy.png");
+    _spacialanomaly = CCSprite::spriteWithFile("Backgrounds/bg_spacialanomaly.png");
+    _spacialanomaly2 = CCSprite::spriteWithFile("Backgrounds/bg_spacialanomaly2.png");
+
+    // 3) Determine relative movement speeds for space dust and background
+    CCPoint dustSpeed = ccp(0.1, 0.1);
+    CCPoint bgSpeed = ccp(0.05, 0.05);
+
+    // 4) Add children to CCParallaxNode
+    _backgroundNode->addChild(_spacedust1, 0 , dustSpeed , ccp(0,winSize.height/2) ); // 2
+    _backgroundNode->addChild(_spacedust2, 0 , dustSpeed , ccp( _spacedust1->getContentSize().width,winSize.height/2));
+    _backgroundNode->addChild(_galaxy,-1, bgSpeed , ccp(0,winSize.height * 0.7));
+    _backgroundNode->addChild(_planetsunrise,-1 , bgSpeed,ccp(600,winSize.height * 0));
+    _backgroundNode->addChild(_spacialanomaly,-1, bgSpeed,ccp(900,winSize.height * 0.3));
+    _backgroundNode->addChild(_spacialanomaly2,-1, bgSpeed,ccp(1500,winSize.height * 0.9));
+
+    HelloWorld::addChild(CCParticleSystemQuad::particleWithFile("Particles/Stars1.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::particleWithFile("Particles/Stars2.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::particleWithFile("Particles/Stars3.plist")) ;
+
+    this->scheduleUpdate();
+
     return true;
 }
 
@@ -81,4 +106,36 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void HelloWorld::update(float dt) {
+  CCPoint backgroundScrollVert = ccp(-1000,0) ;
+  _backgroundNode->setPosition(ccpAdd(_backgroundNode->getPosition(),ccpMult(backgroundScrollVert,dt))) ;
+
+  CCArray *spaceDusts = CCArray::arrayWithCapacity(2) ;
+  spaceDusts->addObject(_spacedust1) ;
+  spaceDusts->addObject(_spacedust2) ;
+  for ( int ii = 0  ; ii <spaceDusts->count() ; ii++ ) {
+      CCSprite * spaceDust = (CCSprite *)(spaceDusts->objectAtIndex(ii)) ;
+      float xPosition = _backgroundNode->convertToWorldSpace(spaceDust->getPosition()).x  ;
+      float size = spaceDust->getContentSize().width ;
+      if ( xPosition < -size ) {
+          _backgroundNode->incrementOffset(ccp(spaceDust->getContentSize().width*2,0),spaceDust) ;
+      }
+  }
+
+  CCArray *backGrounds = CCArray::arrayWithCapacity(4) ;
+  backGrounds->addObject(_galaxy) ;
+  backGrounds->addObject(_planetsunrise) ;
+  backGrounds->addObject(_spacialanomaly) ;
+  backGrounds->addObject(_spacialanomaly2) ;
+  for ( int ii = 0 ; ii <backGrounds->count() ; ii++ ) {
+      CCSprite * background = (CCSprite *)(backGrounds->objectAtIndex(ii)) ;
+      float xPosition = _backgroundNode->convertToWorldSpace(background->getPosition()).x ;
+      float size = background->getContentSize().width ;
+      if ( xPosition < -size ) {
+          _backgroundNode->incrementOffset(ccp(2000,0),background) ;
+      }
+  }
+
 }
