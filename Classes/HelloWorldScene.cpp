@@ -55,11 +55,11 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
     
-    _batchNode = CCSpriteBatchNode::batchNodeWithFile("Spritesheets/Sprites.pvr.ccz");
+    _batchNode = CCSpriteBatchNode::create("Spritesheets/Sprites.pvr.ccz");
     this->addChild(_batchNode);
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Spritesheets/Sprites.plist");
 
-    _ship = CCSprite::spriteWithSpriteFrameName("SpaceFlier_sm_1.png");
+    _ship = CCSprite::createWithSpriteFrameName("SpaceFlier_sm_1.png");
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     _ship->setPosition(ccp(winSize.width * 0.1, winSize.height * 0.5));
     _batchNode->addChild(_ship, 1);
@@ -71,12 +71,12 @@ bool HelloWorld::init()
     this->addChild(_backgroundNode,-1);
 
     // 2) Create the sprites we'll add to the CCParallaxNode
-    _spacedust1 = CCSprite::spriteWithFile("Backgrounds/bg_front_spacedust.png");
-    _spacedust2 = CCSprite::spriteWithFile("Backgrounds/bg_front_spacedust.png");
-    _planetsunrise = CCSprite::spriteWithFile("Backgrounds/bg_planetsunrise.png");
-    _galaxy = CCSprite::spriteWithFile("Backgrounds/bg_galaxy.png");
-    _spacialanomaly = CCSprite::spriteWithFile("Backgrounds/bg_spacialanomaly.png");
-    _spacialanomaly2 = CCSprite::spriteWithFile("Backgrounds/bg_spacialanomaly2.png");
+    _spacedust1 = CCSprite::create("Backgrounds/bg_front_spacedust.png");
+    _spacedust2 = CCSprite::create("Backgrounds/bg_front_spacedust.png");
+    _planetsunrise = CCSprite::create("Backgrounds/bg_planetsunrise.png");
+    _galaxy = CCSprite::create("Backgrounds/bg_galaxy.png");
+    _spacialanomaly = CCSprite::create("Backgrounds/bg_spacialanomaly.png");
+    _spacialanomaly2 = CCSprite::create("Backgrounds/bg_spacialanomaly2.png");
 
     // 3) Determine relative movement speeds for space dust and background
     CCPoint dustSpeed = ccp(0.1, 0.1);
@@ -90,9 +90,9 @@ bool HelloWorld::init()
     _backgroundNode->addChild(_spacialanomaly,-1, bgSpeed,ccp(900,winSize.height * 0.3));
     _backgroundNode->addChild(_spacialanomaly2,-1, bgSpeed,ccp(1500,winSize.height * 0.9));
 
-    HelloWorld::addChild(CCParticleSystemQuad::particleWithFile("Particles/Stars1.plist")) ;
-    HelloWorld::addChild(CCParticleSystemQuad::particleWithFile("Particles/Stars2.plist")) ;
-    HelloWorld::addChild(CCParticleSystemQuad::particleWithFile("Particles/Stars3.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::create("Particles/Stars1.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::create("Particles/Stars2.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::create("Particles/Stars3.plist")) ;
 
     this->scheduleUpdate();
 
@@ -112,7 +112,7 @@ void HelloWorld::update(float dt) {
   CCPoint backgroundScrollVert = ccp(-1000,0) ;
   _backgroundNode->setPosition(ccpAdd(_backgroundNode->getPosition(),ccpMult(backgroundScrollVert,dt))) ;
 
-  CCArray *spaceDusts = CCArray::arrayWithCapacity(2) ;
+  CCArray *spaceDusts = CCArray::create() ;
   spaceDusts->addObject(_spacedust1) ;
   spaceDusts->addObject(_spacedust2) ;
   for ( int ii = 0  ; ii <spaceDusts->count() ; ii++ ) {
@@ -124,7 +124,7 @@ void HelloWorld::update(float dt) {
       }
   }
 
-  CCArray *backGrounds = CCArray::arrayWithCapacity(4) ;
+  CCArray *backGrounds = CCArray::create() ;
   backGrounds->addObject(_galaxy) ;
   backGrounds->addObject(_planetsunrise) ;
   backGrounds->addObject(_spacialanomaly) ;
