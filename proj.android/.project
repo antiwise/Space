@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>com.studiopangea.ProjectTemplate</name>
+	<name>com.studiopangea.Space</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -60,7 +60,7 @@
 		</variable>
 		<variable>
 			<name>Classes1</name>
-			<value>$%7BPARENT-2-ECLIPSE_HOME%7D/Volumes/Documentos/devel/StudioPangea/Cocos2DxDemos/ProjectTemplate/Classes</value>
+			<value>$%7BPARENT-2-ECLIPSE_HOME%7D/Volumes/Documentos/devel/StudioPangea/Cocos2DxDemos/Space/Classes</value>
 		</variable>
 	</variableList>
 </projectDescription>

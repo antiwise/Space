@@ -1,4 +1,4 @@
-APPNAME="ProjectTemplate"
+APPNAME="Space"
 
 # options
 

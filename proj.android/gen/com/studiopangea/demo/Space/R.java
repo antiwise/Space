@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.studiopangea.demo.ProjectTemplate;
+package com.studiopangea.demo.Space;
 
 public final class R {
     public static final class attr {
