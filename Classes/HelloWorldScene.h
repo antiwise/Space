@@ -32,9 +32,11 @@ public:
     LAYER_CREATE_FUNC(HelloWorld);
 
 private:
+    // Space Ship
 	cocos2d::CCSpriteBatchNode * _batchNode;
 	cocos2d::CCSprite * _ship;
 
+	// Background and continuous parallax
 	CCParallaxNodeExtras *_backgroundNode;
 	CCSprite *_spacedust1;
 	CCSprite *_spacedust2;
@@ -43,8 +45,9 @@ private:
 	CCSprite *_spacialanomaly;
 	CCSprite *_spacialanomaly2;
 
+	// Accelerometer
 	float _shipPointsPerSecY;
-	double rollingX ;
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

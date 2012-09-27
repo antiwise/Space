@@ -94,8 +94,6 @@ bool HelloWorld::init()
     HelloWorld::addChild(CCParticleSystemQuad::create("Stars2.plist")) ;
     HelloWorld::addChild(CCParticleSystemQuad::create("Stars3.plist")) ;
 
-    rollingX = 0.0f;
-
     this->scheduleUpdate();
 
     this->setAccelerometerEnabled(true);
@@ -154,6 +152,10 @@ void HelloWorld::update(float dt) {
 
 }
 
+
+/**
+ * Accelerometer
+ */
 void HelloWorld::didAccelerate(CCAcceleration* pAccelerationValue) {
 #define KFILTERINGFACTOR 0.1
 #define KRESTACCELX -0.6
