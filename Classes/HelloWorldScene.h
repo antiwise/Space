@@ -26,6 +26,8 @@ public:
 
     void update(float dt);
 
+    virtual void didAccelerate(CCAcceleration* pAccelerationValue);
+
     // implement the "static node()" method manually
     LAYER_CREATE_FUNC(HelloWorld);
 
@@ -40,6 +42,9 @@ private:
 	CCSprite *_galaxy;
 	CCSprite *_spacialanomaly;
 	CCSprite *_spacialanomaly2;
+
+	float _shipPointsPerSecY;
+	double rollingX ;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -55,9 +55,9 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
     
-    _batchNode = CCSpriteBatchNode::create("Spritesheets/Sprites.pvr.ccz");
+    _batchNode = CCSpriteBatchNode::create("Sprites.pvr.ccz");
     this->addChild(_batchNode);
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Spritesheets/Sprites.plist");
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Sprites.plist");
 
     _ship = CCSprite::createWithSpriteFrameName("SpaceFlier_sm_1.png");
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
@@ -71,12 +71,12 @@ bool HelloWorld::init()
     this->addChild(_backgroundNode,-1);
 
     // 2) Create the sprites we'll add to the CCParallaxNode
-    _spacedust1 = CCSprite::create("Backgrounds/bg_front_spacedust.png");
-    _spacedust2 = CCSprite::create("Backgrounds/bg_front_spacedust.png");
-    _planetsunrise = CCSprite::create("Backgrounds/bg_planetsunrise.png");
-    _galaxy = CCSprite::create("Backgrounds/bg_galaxy.png");
-    _spacialanomaly = CCSprite::create("Backgrounds/bg_spacialanomaly.png");
-    _spacialanomaly2 = CCSprite::create("Backgrounds/bg_spacialanomaly2.png");
+    _spacedust1 = CCSprite::create("bg_front_spacedust.png");
+    _spacedust2 = CCSprite::create("bg_front_spacedust.png");
+    _planetsunrise = CCSprite::create("bg_planetsunrise.png");
+    _galaxy = CCSprite::create("bg_galaxy.png");
+    _spacialanomaly = CCSprite::create("bg_spacialanomaly.png");
+    _spacialanomaly2 = CCSprite::create("bg_spacialanomaly2.png");
 
     // 3) Determine relative movement speeds for space dust and background
     CCPoint dustSpeed = ccp(0.1, 0.1);
@@ -90,11 +90,15 @@ bool HelloWorld::init()
     _backgroundNode->addChild(_spacialanomaly,-1, bgSpeed,ccp(900,winSize.height * 0.3));
     _backgroundNode->addChild(_spacialanomaly2,-1, bgSpeed,ccp(1500,winSize.height * 0.9));
 
-    HelloWorld::addChild(CCParticleSystemQuad::create("Particles/Stars1.plist")) ;
-    HelloWorld::addChild(CCParticleSystemQuad::create("Particles/Stars2.plist")) ;
-    HelloWorld::addChild(CCParticleSystemQuad::create("Particles/Stars3.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::create("Stars1.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::create("Stars2.plist")) ;
+    HelloWorld::addChild(CCParticleSystemQuad::create("Stars3.plist")) ;
+
+    rollingX = 0.0f;
 
     this->scheduleUpdate();
+
+    this->setAccelerometerEnabled(true);
 
     return true;
 }
@@ -138,4 +142,37 @@ void HelloWorld::update(float dt) {
       }
   }
 
+  // Accelerometer
+  CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+  float maxY = winSize.height - _ship->getContentSize().height/2;
+  float minY = _ship->getContentSize().height/2;
+
+  float diff = (_shipPointsPerSecY * dt) ;
+  float newY = _ship->getPosition().y + diff;
+  newY = MIN(MAX(newY, minY), maxY);
+  _ship->setPosition(ccp(_ship->getPosition().x, newY));
+
+}
+
+void HelloWorld::didAccelerate(CCAcceleration* pAccelerationValue) {
+#define KFILTERINGFACTOR 0.1
+#define KRESTACCELX -0.6
+#define KSHIPMAXPOINTSPERSEC (winSize.height*0.5)
+#define KMAXDIFFX 0.2
+
+  double rollingX ;
+
+  // Cocos2DX inverts X and Y accelerometer depending on device orientation
+  // in landscape mode right x=-y and y=x !!! (Strange and confusing choice)
+  pAccelerationValue->x = pAccelerationValue->y ;
+  rollingX = (pAccelerationValue->x * KFILTERINGFACTOR) + (rollingX * (1.0 - KFILTERINGFACTOR));
+  //float accelX = pAccelerationValue->x - rollingX ;
+  float accelX = pAccelerationValue->x;
+
+  CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+
+  float accelDiff = accelX - KRESTACCELX;
+  float accelFraction = accelDiff / KMAXDIFFX;
+
+  _shipPointsPerSecY = KSHIPMAXPOINTSPERSEC * accelFraction;
 }
