@@ -49,12 +49,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="0.1782640147.897077494" name="HelloWorldScene.cpp" rcbsApplicability="disable" resourcePath="Classes/HelloWorldScene.cpp" toolsToInvoke="org.eclipse.cdt.build.core.settings.holder.943910811.917057893">
-						<tool id="org.eclipse.cdt.build.core.settings.holder.943910811.917057893" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder.113423798">
-							<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.379774514" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths"/>
-							<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1931199280" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
-						</tool>
-					</fileInfo>
 					<sourceEntries>
 						<entry excluding="Classes" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
