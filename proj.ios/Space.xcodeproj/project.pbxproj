@@ -263,6 +263,9 @@
 		F3CAA8021614F00D00A0E51A /* Stars1.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3CAA7EF1614F00D00A0E51A /* Stars1.plist */; };
 		F3CAA8031614F00D00A0E51A /* Stars2.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3CAA7F01614F00D00A0E51A /* Stars2.plist */; };
 		F3CAA8041614F00D00A0E51A /* Stars3.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3CAA7F11614F00D00A0E51A /* Stars3.plist */; };
+		F3E24E42161641FB0094FAE0 /* explosion_large.wav in Resources */ = {isa = PBXBuildFile; fileRef = F3E24E3F161641FB0094FAE0 /* explosion_large.wav */; };
+		F3E24E43161641FB0094FAE0 /* laser_ship.wav in Resources */ = {isa = PBXBuildFile; fileRef = F3E24E40161641FB0094FAE0 /* laser_ship.wav */; };
+		F3E24E44161641FB0094FAE0 /* SpaceGame.wav in Resources */ = {isa = PBXBuildFile; fileRef = F3E24E41161641FB0094FAE0 /* SpaceGame.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -781,6 +784,9 @@
 		F3CAA7EF1614F00D00A0E51A /* Stars1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Stars1.plist; path = ../../Resources/Stars1.plist; sourceTree = "<group>"; };
 		F3CAA7F01614F00D00A0E51A /* Stars2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Stars2.plist; path = ../../Resources/Stars2.plist; sourceTree = "<group>"; };
 		F3CAA7F11614F00D00A0E51A /* Stars3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Stars3.plist; path = ../../Resources/Stars3.plist; sourceTree = "<group>"; };
+		F3E24E3F161641FB0094FAE0 /* explosion_large.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = explosion_large.wav; path = ../../Resources/explosion_large.wav; sourceTree = "<group>"; };
+		F3E24E40161641FB0094FAE0 /* laser_ship.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = laser_ship.wav; path = ../../Resources/laser_ship.wav; sourceTree = "<group>"; };
+		F3E24E41161641FB0094FAE0 /* SpaceGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = SpaceGame.wav; path = ../../Resources/SpaceGame.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -849,6 +855,9 @@
 		F30825A915F6A6C400E6854F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F3E24E3F161641FB0094FAE0 /* explosion_large.wav */,
+				F3E24E40161641FB0094FAE0 /* laser_ship.wav */,
+				F3E24E41161641FB0094FAE0 /* SpaceGame.wav */,
 				F3CAA7DF1614F00D00A0E51A /* Arial.fnt */,
 				F3CAA7E01614F00D00A0E51A /* Arial.png */,
 				F3CAA7E11614F00D00A0E51A /* bg_front_spacedust.png */,
@@ -1867,6 +1876,9 @@
 				F3CAA8021614F00D00A0E51A /* Stars1.plist in Resources */,
 				F3CAA8031614F00D00A0E51A /* Stars2.plist in Resources */,
 				F3CAA8041614F00D00A0E51A /* Stars3.plist in Resources */,
+				F3E24E42161641FB0094FAE0 /* explosion_large.wav in Resources */,
+				F3E24E43161641FB0094FAE0 /* laser_ship.wav in Resources */,
+				F3E24E44161641FB0094FAE0 /* SpaceGame.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
