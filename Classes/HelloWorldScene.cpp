@@ -6,8 +6,10 @@
 
 #include "HelloWorldScene.h"
 #include "CCParallaxNodeExtras.h"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
+using namespace CocosDenshion ;
 
 HelloWorld::~HelloWorld()
 {
@@ -136,6 +138,11 @@ HelloWorld::init()
   double curTime = getTimeTick();
   _gameOverTime = curTime + 30000;
 
+
+  // Audio
+  SimpleAudioEngine::sharedEngine()->playBackgroundMusic("SpaceGame.wav",true) ;
+  SimpleAudioEngine::sharedEngine()->preloadEffect("explosion_large.wav") ;
+  SimpleAudioEngine::sharedEngine()->preloadEffect("laser_ship.wav") ;
   return true;
 }
 
@@ -210,6 +217,9 @@ HelloWorld::update(float dt)
             if ( ! shipLaser->isVisible() )
                                       continue ;
             if ( shipLaser->boundingBox().intersectsRect( asteroid->boundingBox() ) ) {
+
+              SimpleAudioEngine::sharedEngine()->playEffect("explosion_large.wav") ;
+
               shipLaser->setVisible(false) ;
               asteroid->setVisible(false) ;
               continue ;
@@ -326,6 +336,9 @@ HelloWorld::setInvisible(CCNode * node)
 void
 HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
+
+  SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav") ;
+
   CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
   CCSprite *shipLaser = (CCSprite *) _shipLasers->objectAtIndex(
@@ -346,9 +359,12 @@ HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 void
 HelloWorld::restartTapped()
 {
+    CCDirector::sharedDirector()->replaceScene(this->scene());
+  /*
   CCDirector::sharedDirector()->replaceScene(
       CCTransitionZoomFlipX::create(0.5, this->scene()));
   // reschedule
+  */
   this->scheduleUpdate();
 }
 
