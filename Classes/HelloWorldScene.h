@@ -54,34 +54,31 @@ protected:
 
 private:
     // Space Ship
-	cocos2d::CCSpriteBatchNode * _batchNode;
-	cocos2d::CCSprite * _ship;
+    cocos2d::CCSpriteBatchNode * _batchNode;
+    cocos2d::CCSprite * _ship;
 
-	// Background and continuous parallax
-	CCParallaxNodeExtras *_backgroundNode;
-	CCSprite *_spacedust1;
-	CCSprite *_spacedust2;
-	CCSprite *_planetsunrise;
-	CCSprite *_galaxy;
-	CCSprite *_spacialanomaly;
-	CCSprite *_spacialanomaly2;
+    // Background and continuous parallax
+    CCParallaxNodeExtras *_backgroundNode;
+    CCSprite *_spacedust1;
+    CCSprite *_spacedust2;
+    CCSprite *_planetsunrise;
+    CCSprite *_galaxy;
+    CCSprite *_spacialanomaly;
+    CCSprite *_spacialanomaly2;
 
-	// Accelerometer
-	float _shipPointsPerSecY;
+    // Accelerometer
+    float _shipPointsPerSecY;
 
-	// Laser
-	CCArray*  _shipLasers ;
-	int _nextShipLaser ;
+    // Laser
+    CCArray*  _shipLasers ;
+    int _nextShipLaser ;
 
-	// Score
-	int _lives ;
+    // Score
+    int _lives ;
 
-	// Score
-	double _gameOverTime ;
-	bool _gameOver ;
-
-
-
+    // Score
+    double _gameOverTime ;
+    bool _gameOver ;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -9,7 +9,7 @@
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
-using namespace CocosDenshion ;
+using namespace CocosDenshion;
 
 HelloWorld::~HelloWorld()
 {
@@ -138,11 +138,10 @@ HelloWorld::init()
   double curTime = getTimeTick();
   _gameOverTime = curTime + 30000;
 
-
   // Audio
-  SimpleAudioEngine::sharedEngine()->playBackgroundMusic("SpaceGame.wav",true) ;
-  SimpleAudioEngine::sharedEngine()->preloadEffect("explosion_large.wav") ;
-  SimpleAudioEngine::sharedEngine()->preloadEffect("laser_ship.wav") ;
+  SimpleAudioEngine::sharedEngine()->playBackgroundMusic("SpaceGame.wav", true);
+  SimpleAudioEngine::sharedEngine()->preloadEffect("explosion_large.wav");
+  SimpleAudioEngine::sharedEngine()->preloadEffect("laser_ship.wav");
   return true;
 }
 
@@ -245,9 +244,9 @@ HelloWorld::update(float dt)
 
 }
 
-  /**
-   * Accelerometer
-   */
+/**
+ * Accelerometer
+ */
 void
 HelloWorld::didAccelerate(CCAcceleration* pAccelerationValue)
 {
@@ -337,7 +336,7 @@ void
 HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
 
-  SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav") ;
+  SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav");
 
   CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
@@ -359,12 +358,12 @@ HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 void
 HelloWorld::restartTapped()
 {
-    CCDirector::sharedDirector()->replaceScene(this->scene());
+  CCDirector::sharedDirector()->replaceScene(this->scene());
   /*
-  CCDirector::sharedDirector()->replaceScene(
-      CCTransitionZoomFlipX::create(0.5, this->scene()));
-  // reschedule
-  */
+   CCDirector::sharedDirector()->replaceScene(
+   CCTransitionZoomFlipX::create(0.5, this->scene()));
+   // reschedule
+   */
   this->scheduleUpdate();
 }
 
@@ -387,8 +386,8 @@ HelloWorld::endScene(EndReason endReason)
 
   CCLabelBMFont * restartLabel;
   restartLabel = CCLabelBMFont::create("Restart", "Arial.fnt");
-  CCMenuItemLabel *restartItem = CCMenuItemLabel::create(restartLabel,
-      this, menu_selector(HelloWorld::restartTapped));
+  CCMenuItemLabel *restartItem = CCMenuItemLabel::create(restartLabel, this,
+      menu_selector(HelloWorld::restartTapped));
   restartItem->setScale(0.1);
   restartItem->setPosition(ccp( winSize.width/2 , winSize.height*0.4));
 
