@@ -32,13 +32,12 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.943910811" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.225889130" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${COCOS2DX_ROOT}/cocos2dx/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${COCOS2DX_ROOT}/cocos2dx/platform/android&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${COCOS2DX_ROOT}/external&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${COCOS2DX_ROOT}/CocosDenshion/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${COCOS2DX_ROOT}/cocos2dx/kazmath/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${COCOS2DX_ROOT}/cocos2dx&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/include/"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../Library/cocos2dx/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../Library/cocos2dx&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../Library/cocos2dx/kazmath/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../Library/CocosDenshion/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../Library/&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../Library/cocos2dx/platform/android&quot;"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1087822252" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
@@ -63,4 +62,10 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/Space"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
