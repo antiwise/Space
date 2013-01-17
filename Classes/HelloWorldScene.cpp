@@ -187,6 +187,8 @@ HelloWorld::update(float dt)
       }
   }
 
+    if(_ship->isVisible())
+    {
   // Accelerometer
   CCSize winSize = CCDirector::sharedDirector()->getWinSize();
   float maxY = winSize.height - _ship->getContentSize().height/2;
@@ -198,6 +200,7 @@ HelloWorld::update(float dt)
   _ship->setPosition(ccp(_ship->getPosition().x, newY));
 
   // Collisions
+
   CCObject* itAster = NULL;
   CCObject* itLaser = NULL;
 
@@ -232,6 +235,8 @@ HelloWorld::update(float dt)
     }
   }
 
+  }
+    
   float curTimeMillis = this->getTimeTick();
 
   if ( _lives <= 0 ) {
@@ -332,31 +337,32 @@ HelloWorld::setInvisible(CCNode * node)
 }
 
 // Lasers
-void
-HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
+void HelloWorld::ccTouchesBegan(cocos2d::CCSet* touches, cocos2d::CCEvent* event)
 {
 
   SimpleAudioEngine::sharedEngine()->playEffect("laser_ship.wav");
 
   CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 
-  CCSprite *shipLaser = (CCSprite *) _shipLasers->objectAtIndex(
+  if(_ship->isVisible())
+  {
+      CCSprite *shipLaser = (CCSprite *) _shipLasers->objectAtIndex(
       _nextShipLaser++);
-  if (_nextShipLaser >= _shipLasers->count())
+      if (_nextShipLaser >= _shipLasers->count())
     _nextShipLaser = 0;
-  shipLaser->setPosition(
+      shipLaser->setPosition(
       ccpAdd(_ship->getPosition(), ccp(shipLaser->getContentSize().width/2, 0)));
-  shipLaser->setVisible(true);
-  shipLaser->stopAllActions();
-  shipLaser->runAction(
-      CCSequence::create(CCMoveBy::create(0.5, ccp(winSize.width, 0)),
-      CCCallFuncN::create(this,callfuncN_selector(HelloWorld::setInvisible)) ,
-      NULL  // DO NOT FORGET TO TERMINATE WITH NULL
+      shipLaser->setVisible(true);
+      shipLaser->stopAllActions();
+      shipLaser->runAction(
+                           CCSequence::create(CCMoveBy::create(0.5, ccp(winSize.width, 0)),
+                                              CCCallFuncN::create(this,callfuncN_selector(HelloWorld::setInvisible)) ,
+                         NULL  // DO NOT FORGET TO TERMINATE WITH NULL
           ) );
-        }
+  }
+}
 
-void
-HelloWorld::restartTapped()
+void HelloWorld::restartTapped()
 {
   CCDirector::sharedDirector()->replaceScene(this->scene());
   /*
