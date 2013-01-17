@@ -1,6 +1,3 @@
-# Mac OS X
-*.DS_Store
-
 # Xcode
 *.pbxuser
 *.mode1v3
@@ -25,9 +22,9 @@ xcuserdata/
 *.so
 
 # Compiled Static libraries
-*.lai
-*.la
-*.a
+#*.lai
+#*.la
+#*.a
 
 #Python modules
 MANIFEST
@@ -42,3 +39,11 @@ proj.android/assets/
 proj.android/bin/
 proj.android/libs/
 proj.android/obj/
+
+# Mac OS X
+*.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Icon
+
