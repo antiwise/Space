@@ -2347,6 +2347,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_NAME)/../../Library/cocos2dx/platform/third_party/ios/libraries\"",
+					"\"$(SRCROOT)/../Library/cocos2dx/platform/third_party/ios/libraries\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -2381,6 +2382,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_NAME)/../../Library/cocos2dx/platform/third_party/ios/libraries\"",
+					"\"$(SRCROOT)/../Library/cocos2dx/platform/third_party/ios/libraries\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
